@@ -17,6 +17,10 @@ export class MessageService {
     return of(MESSAGES);
   }
 
+  addMessage(username: string, data: string, timestamp: string) {
+    MESSAGES.push({ username: username, data: data, timestamp: (new Date(timestamp)).toLocaleTimeString()});
+  }
+
   getHero(id: number | string) {
     return this.getHeroes().pipe(
       // (+) before `id` turns the string into a number

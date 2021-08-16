@@ -38,7 +38,7 @@
         </div>
 
       </div>
-
+<!--
       <div class="row reply">
         <div class="col-sm-9 col-xs-9 reply-main">
           <textarea class="form-control" rows="1" id="comment"></textarea>
@@ -47,6 +47,10 @@
           <i class="fa fa-send fa-2x" aria-hidden="true"></i>
         </div>
       </div>
+-->
+      <input type="text" [(ngModel)]="cur_message" placeholder="Enter your message" >
+
+      <button type="submit" (click)="SendMessage()" >Send</button>
 
     </div>
   </div>

@@ -3,6 +3,8 @@ import { Router } from "@angular/router";
 import { AuthService } from "./auth.service";
 
 import {SharedService} from "../shared.service";
+import {MessageClientService} from "../message-client.service";
+
 
 @Component({
   selector: 'app-login',
@@ -16,7 +18,7 @@ export class LoginComponent implements OnInit{
 
   message = '';
 
-  constructor(private sharedService: SharedService, public authService: AuthService, public router: Router, ) {}
+  constructor(private sharedService: SharedService, public authService: AuthService, public router: Router, public messageService: MessageClientService) {}
 
   ngOnInit() {
     this.newMessage(this.username);
@@ -24,14 +26,14 @@ export class LoginComponent implements OnInit{
 
   login() {
     this.authService.login().subscribe(() => {
-      if (this.authService.isLoggedIn) {
-        // Usually you would use the redirect URL from the auth service.
-        // However to keep the example simple, we will always redirect to `/admin`.
-        const redirectUrl = '/chat';
-        this.newMessage(this.username);
-        // Redirect the user
-        //this.router.navigate([redirectUrl]);
-        this.router.navigate([redirectUrl]);
+      if (!this.authService.isLoggedIn) {
+        if(this.isValid()) {
+          const redirectUrl = '/chat';
+          this.newMessage(this.username);
+
+          this.authService.isLoggedIn = true;
+          this.router.navigate([redirectUrl]);
+        }
       }
     });
   }
@@ -42,6 +44,18 @@ export class LoginComponent implements OnInit{
 
   newMessage(username: string) {
     this.sharedService.nextMessage(username);
+  }
+
+  isValid() {
+    if(this.username == ''){
+      alert("cannot specify empty username");
+      return false;
+    }
+    if(this.password.length <= 8){
+      alert("passwords must be at least 8 characters long");
+      return false;
+    }
+    return true;
   }
 
 }

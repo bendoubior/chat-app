@@ -12,7 +12,7 @@ export class SharedService {
   constructor() { }
 
   nextMessage(message: string) {
-    this.message.next(message)
+    this.message.next(message);
   }
 
 }

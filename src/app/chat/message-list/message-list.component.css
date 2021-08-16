@@ -344,10 +344,12 @@ body {
   padding: 0 !important;
   width: auto;
   height: auto;
+
 }
 
 .message-main-receiver {
   /*padding: 10px 20px;*/
+  padding: 3px 20px !important;
   max-width: 60%;
 }
 
@@ -387,6 +389,7 @@ body {
 }
 
 .receiver {
+  float: left;
   width: auto !important;
   padding: 4px 10px 7px !important;
   border-radius: 10px 10px 10px 0;
@@ -459,7 +462,7 @@ body {
 }
 
 .reply-main textarea {
-  width: 100%;
+  width: 50%;
   resize: none;
   overflow: hidden;
   padding: 5px !important;

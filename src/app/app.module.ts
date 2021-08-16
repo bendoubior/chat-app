@@ -8,6 +8,9 @@ import { LoginComponent } from './login/login.component';
 import {FormsModule} from "@angular/forms";
 import { MessageComponent } from './chat/message/message.component';
 import {ChatModule} from "./chat/chat.module";
+import {SocketIoModule, SocketIoConfig} from "ngx-socket-io";
+
+const config: SocketIoConfig = { url: 'http://localhost:4444', options: {} };
 
 @NgModule({
   declarations: [
@@ -18,6 +21,7 @@ import {ChatModule} from "./chat/chat.module";
   imports: [
     BrowserModule,
     FormsModule,
+    SocketIoModule.forRoot(config),
     ChatModule,
     AppRoutingModule
   ],
